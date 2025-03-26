@@ -1,60 +1,35 @@
+
 import java.util.Scanner;
 
 public class P3 {
-    public static double usToSgd(int us) {
-        final double RATE = 1.82;
-        return us * RATE;
-    }
-
-    private static void creatingTableUsingFor(int starting, int ending, int increment) {
-        System.out.println("US$          S$");
-        System.out.println("---------------");
-        for (int now = starting; now <= ending; now += increment) {
-            System.out.printf("%-13d%2f\n", now, usToSgd(now));
-        }
-    }
-
-
-    private static void creatingTableUsingWhile(int starting, int ending, int increment) {
-        System.out.println("US$          S$");
-        System.out.println("---------------");
-        int now = starting;
-        while (now <= ending) {
-            System.out.printf("%-13d%2f\n", now, usToSgd(now));
-            now += increment;
-        }
-    }
-
-
-    private static void creatingTableUsingDoWhile(int starting, int ending, int increment) {
-        System.out.println("US$          S$");
-        System.out.println("---------------");
-        int now = starting;
-        do {
-            System.out.printf("%-13d%2f\n", now, usToSgd(now));
-            now += increment;
-        } while (now < ending);
-    }
-
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int starting, ending, increment;
-        System.out.print("Starting: ");
-        starting = scanner.nextInt();
-        System.out.print("Ending: ");
-        ending = scanner.nextInt();
-        System.out.print("Increment: ");
-        increment = scanner.nextInt();
-        System.out.println();
-        System.out.println("Using For:");
-        creatingTableUsingFor(starting, ending, increment);
-        System.out.println();
-        System.out.println("Using While:");
-        creatingTableUsingWhile(starting, ending, increment);
-        System.out.println();
-        System.out.println("Using Do-While:");
-        creatingTableUsingDoWhile(starting, ending, increment);
-    }
+        int start = scanner.nextInt();
+        int end = scanner.nextInt();
+        int inc = scanner.nextInt();
 
+        if (end < start) {
+            System.out.println("Error input!!");
+        }
+        else {
+            System.out.print("US$        S$\n" + "--------------\n");
+            for (int i = start; i <= end; i += inc) {
+                System.out.printf("%-2d       %-2.2f\n", i, (i * 1.82));
+            }
+
+            int temp = start;
+            System.out.print("\nUS$        S$\n" + "--------------\n");
+            while (temp <= end) {
+                System.out.printf("%-2d       %-2.2f\n", temp, (temp * 1.82));
+                temp += inc;
+            }
+
+            System.out.print("\nUS$         S$\n" + "--------------\n");
+            do {
+                System.out.printf("%-2d       %-2.2f\n", start, (start * 1.82));
+                start += inc;
+            }
+            while (start <= end);
+        }
+    }
 }
